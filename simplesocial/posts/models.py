@@ -25,7 +25,8 @@ class Post(models.Model):
         Group,
         related_name='posts',
         null=True,
-        blank=True)
+        blank=True,
+        on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.message
