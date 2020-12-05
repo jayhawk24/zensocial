@@ -2,23 +2,22 @@ from django.core.checks import messages
 from django.shortcuts import get_object_or_404, render
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-
+from django.db import IntegrityError
 from django.urls import reverse
 from django.views import generic
-from .models import Group, GroupMember
-
+from . import models
 
 class CreateGroup(LoginRequiredMixin, generic.CreateView):
     fields = ('name', 'description')
-    model = Group
+    model = models.Group
 
 
 class SingleGroup(generic.DetailView):
-    model = Group
+    model = models.Group
 
 
 class ListGroup(generic.ListView):
-    model = Group
+    model = models.Group
 
 
 class JoinGroup(LoginRequiredMixin, generic.RedirectView):
@@ -28,10 +27,10 @@ class JoinGroup(LoginRequiredMixin, generic.RedirectView):
                 'slug': self.kwargs.get('slug')})
 
     def get(self, request, *args, **kwargs):
-        group = get_object_or_404(Group, slug=self.kwargs.get('slug'))
+        group = get_object_or_404(models.Group, slug=self.kwargs.get('slug'))
 
         try:
-            GroupMember.objects.create(user=self.request, group=group)
+            models.GroupMember.objects.create(user=self.request.user, group=group)
         except IntegrityError:
             messages.warning(self.request, 'Warning already a member!')
         else:
@@ -46,7 +45,7 @@ class LeaveGroup(LoginRequiredMixin, generic.RedirectView):
                 'slug': self.kwargs.get('slug')})
 
     def get(self, request, *args, **kwargs):
-        group = get_object_or_404(Group, slug=self.kwargs.get('slug'))
+        group = get_object_or_404(models.Group, slug=self.kwargs.get('slug'))
 
         try:
             membership = models.GroupMember.objects.filter(

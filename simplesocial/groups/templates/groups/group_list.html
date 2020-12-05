@@ -6,7 +6,7 @@
     
     <h2>
     Welcome Back!
-        <a href="{%url 'posts:for_user' username=user.username%}">
+        <a href="{% url 'post:for_user' username=user.username%}">
         @{{user.username}}
         </a>
     </h2>

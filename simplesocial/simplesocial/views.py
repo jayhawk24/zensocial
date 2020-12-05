@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView
 
+#The index page is redirected to groups page to this line is useless.
 class HomePage(TemplateView):
     template_name = 'index.html'
 
