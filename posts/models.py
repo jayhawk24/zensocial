@@ -41,6 +41,7 @@ class Post(models.Model):
             kwargs={
                 'username': self.user.username,
                 "pk": self.pk})
+
     class Meta:
         ordering = ['-created_at']
-        unique_together = ['user','message']
+        unique_together = ['user', 'message']

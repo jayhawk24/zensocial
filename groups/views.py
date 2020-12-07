@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.views import generic
 from . import models
 
+
 class CreateGroup(LoginRequiredMixin, generic.CreateView):
     fields = ('name', 'description')
     model = models.Group
@@ -30,7 +31,8 @@ class JoinGroup(LoginRequiredMixin, generic.RedirectView):
         group = get_object_or_404(models.Group, slug=self.kwargs.get('slug'))
 
         try:
-            models.GroupMember.objects.create(user=self.request.user, group=group)
+            models.GroupMember.objects.create(
+                user=self.request.user, group=group)
         except IntegrityError:
             messages.warning(self.request, 'Warning already a member!')
         else:
