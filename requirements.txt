@@ -16,12 +16,12 @@ lazy-object-proxy==1.4.3
 mccabe==0.6.1
 misaka==2.1.1
 Pillow==8.0.1
-pkg-resources==0.0.0
 psycopg2-binary==2.8.6
 pycodestyle==2.6.0
 pycparser==2.20
 pylint==2.6.0
 python-dateutil==2.8.1
+python-dotenv==0.15.0
 pytz==2020.1
 six==1.15.0
 sqlparse==0.4.1
