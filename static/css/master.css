@@ -18,7 +18,7 @@ body {
   user-select: none;
   font-family: Arial;
 }
-.content{
+.mycontent{
     margin-top: 5vh;
     color: whitesmoke;
 }
@@ -26,7 +26,10 @@ body {
   
   margin-top: 5vh;
 }
-h4{
+h1,h4{
   color: whitesmoke;
   margin: 5vh;
+}
+.form-group{
+  color: whitesmoke;
 }
