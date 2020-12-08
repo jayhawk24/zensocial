@@ -30,7 +30,7 @@ if os.path.isfile(dotenv_file):
 SECRET_KEY = 'jk+rd$xxi+a#*l#n4z71w%^1ivd%frlvphpqz3l=mxy$fzqx02'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['zensocial.herokuapp.com', '127.0.0.1']
 
