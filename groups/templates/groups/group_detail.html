@@ -1,10 +1,20 @@
 {% extends 'groups/group_base.html' %}
+
 {% block pregroup %}
+<div class="row">
+<div class='col-md-auto'>
+<h4>Member Count: {{group.members.count}}</h2>
 
-<h1>{{group.name}}</h1>
-<h2>Member Count: {{group.members.count}}</h2>
+</div>
+</div>
+{% endblock pregroup %}
 
-<div class="content">
+{% block group_content %}
+<div class="row">
+    <h1 class='col-md-auto'>{{group.name}}</h1>
+</div>
+
+<div class="flex-col">
     {% if user in group.members.all %}
         <a href="{%url 'groups:leave' slug=group.slug %}" class='btn btn-lg btn-fill btn-warning'>
         <span class='glyphicon glyphicon-remove-circle'>Leave</span>
@@ -16,12 +26,9 @@
     {% endif %}
 </div>
 
-{% endblock pregroup %}
-
-{% block group_content %}
-    <div class="col-md-8">
+    <div class="row">
     {% if group.posts.count == 0 %}
-        <h2>No posts in this group yet!</h2>
+        <h4 class=''>No posts in this group yet!</h2>
     
     {% else %}
 
